@@ -876,8 +876,6 @@ void futurerestore::enterPwnRecovery(plist_t build_identity, std::string bootarg
                 reterror("Failed to get apnonce from device!");
             }
             assure(!irecv_send_command(_client->recovery->client, "bgcolor 255 255 0"));
-            retassure(_setNonce || memcmp(_client->nonce, nonceelem.payload(), _client->nonce_size) == 0,
-                      "ApNonce from device doesn't match IM4M nonce after applying ApNonce hax. Aborting!");
         } else {
             getDeviceMode(true);
             retassure(((dfu_client_new(_client) == IRECV_E_SUCCESS) || (mutex_unlock(&_client->device_event_mutex), 0)),
