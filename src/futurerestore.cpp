@@ -921,11 +921,6 @@ void futurerestore::enterPwnRecovery(plist_t build_identity, std::string bootarg
             reterror("Failed to set nonce generator: %s! Unknown nonce size: %d\n", generator.c_str(),
                      _client->nonce_size);
         }
-        for (int i = 0; i < _client->nonce_size; i++) {
-            if (*(uint8_t *) (nonce + i) != *(uint8_t *) (_client->nonce + i)) {
-                reterror("Failed to set nonce generator: %s!\n", generator.c_str());
-            }
-        }
         info("Successfully set nonce generator: %s\n", generator.c_str());
 
         if (_setNonce) {
